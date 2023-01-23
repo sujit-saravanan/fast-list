@@ -1,6 +1,6 @@
 # fast-list
 Naive linked lists are infamous for being extremely slow for a variety of reasons, including but not limited to:
-1. Requestiong allocations for every single node.
+1. Requesting allocations for every single node.
 2. Scattering nodes/allocations all around the heap, resulting in poor cache locality and potential fragmentation.
 3. Requiring the overhead of 2 pointers(in a doubly linked list) along with your data.
 ##
@@ -14,6 +14,7 @@ The buffer is able to keep track of free slots for future nodes to fit into with
 
 Another cheap but valuable optimization that was able to be made as a result of using the buffer was the ability to track nodes by an index rather than a pointer, resulting in each node only requiring 2 unsigned ints instead of 2 full pointers. This does result in the list being limited to a maximum of 4,294,967,296 individual nodes... But such a restriction is reasonable for just about any possible usecase.
 
+While not a performance improvement, not requiring lots of small allocations for every node drastically reduces the likelihood of any memory bugs, as you no longer have to worry about freeing individual nodes. The entire arena can be destroyed with a single free/call to the destructor as well, resulting in much more convenient cleanup.
 #
 Some rough performance benchmarks indicate that my assumptions about how such a structure would improve upon conventional linked lists were true:
 
