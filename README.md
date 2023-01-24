@@ -16,7 +16,7 @@ Another cheap but valuable optimization that was able to be made as a result of 
 
 While not a performance improvement, not requiring lots of small allocations for every node drastically reduces the likelihood of any memory bugs, as you no longer have to worry about freeing individual nodes. The entire arena can be destroyed with a single free/call to the destructor as well, resulting in much more convenient cleanup.
 #
-Some rough performance benchmarks indicate that my assumptions about how such a structure would improve upon conventional linked lists were true:
+Some rough performance benchmarks indicate that my assumptions about how such a structure would improve upon conventional linked lists were true(These were compiled with -O3 and all the structures were resized before the measurement to remove the impact of allocations):
 
 1. inserting 100,000 elements into the beginning, removing 40,000 elements from the beginning, then inserting 100,000 elements into the beginning once again:
 ```
