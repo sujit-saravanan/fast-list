@@ -1,4 +1,6 @@
 # fast-list
+A learning exercise to explore the impact cache locality has on the performance of containers. 
+##
 Naive linked lists are infamous for being extremely slow for a variety of reasons, including but not limited to:
 1. Requesting allocations for every single node.
 2. Scattering nodes/allocations all around the heap, resulting in poor cache locality and potential fragmentation.
